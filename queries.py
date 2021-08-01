@@ -19,6 +19,7 @@ print_status(response)
 response = requests.delete(url)
 print_status(response)
 
+
 print()
 print('Head request')
 print()
@@ -50,33 +51,11 @@ for method_type in method :
     print(method_type)
     response = requests.get(url, params = {"method": method_type})
     print_status(response)
-
-
-print()
-print()
-
-method = ['GET', 'PUT', 'POST', 'DELETE']
-for method_type in method :
-    print(method_type)
     response = requests.put(url, data={"method": method_type})
     print_status(response)
-
-print()
-print()
-
-method = ['GET', 'PUT', 'POST', 'DELETE']
-for method_type in method:
-    print(method_type)
-    response = requests.post(url, data={"method": method_type})
-    print_status(response)
-
-print()
-print()
-
-method = ['GET', 'PUT', 'POST', 'DELETE']
-for method_type in method:
-    print(method_type)
     response = requests.delete(url, data={"method": method_type})
+    print_status(response)
+    response = requests.post(url, data={"method": method_type})
     print_status(response)
 
 
